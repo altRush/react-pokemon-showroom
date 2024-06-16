@@ -1,3 +1,3 @@
-import DisplayPokemon from './components/DisplayPokemon';
+import ConnectedDisplayPokemon from './components/DisplayPokemon';
 
-export { DisplayPokemon };
+export { ConnectedDisplayPokemon };
