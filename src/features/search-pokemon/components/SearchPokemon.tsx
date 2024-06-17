@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
-import './DisplayPokemon.css';
+import './SearchPokemon.css';
 
 const actionCreators = {
 	searchPokemon
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DisplayPokemon({ searchPokemon, searchedPokemon }: any) {
+function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 	const [pokemonSprite, setPokemonSprite] = useState('');
 
 	useEffect(() => {
@@ -55,9 +55,6 @@ function DisplayPokemon({ searchPokemon, searchedPokemon }: any) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mapState = (state: PokemonState) => state;
 
-const ConnectedDisplayPokemon = connect(
-	mapState,
-	actionCreators
-)(DisplayPokemon);
+const ConnectedSearchPokemon = connect(mapState, actionCreators)(SearchPokemon);
 
-export default ConnectedDisplayPokemon;
+export default ConnectedSearchPokemon;
