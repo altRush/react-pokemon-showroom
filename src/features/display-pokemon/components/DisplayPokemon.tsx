@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import { searchPokemon, PokemonState } from '../../../stores/searchedPokemon';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { capitalizeFirstLetter } from '../../../utils';
+import loadingSpinner from '../../../assets/bouncing-circles.svg';
+import './DisplayPokemon.css';
 
 const actionCreators = {
 	searchPokemon
@@ -12,6 +15,10 @@ function DisplayPokemon({ searchPokemon, searchedPokemon }: any) {
 	const [pokemonSprite, setPokemonSprite] = useState('');
 
 	useEffect(() => {
+		if (!searchedPokemon) {
+			setPokemonSprite('');
+		}
+
 		(async () => {
 			if (searchedPokemon) {
 				const { data } = await axios.get(
@@ -25,8 +32,12 @@ function DisplayPokemon({ searchPokemon, searchedPokemon }: any) {
 	return (
 		<>
 			<h3>Search Pokemon</h3>
-			<img src={pokemonSprite} alt="" />
-			<h2>{searchedPokemon}</h2>
+			{pokemonSprite ? (
+				<img src={pokemonSprite} alt="" />
+			) : (
+				<img className="width-half" src={loadingSpinner} alt="" />
+			)}
+			<h2>{capitalizeFirstLetter(searchedPokemon)}</h2>
 			<div className="card">
 				<input
 					onChange={e => {
