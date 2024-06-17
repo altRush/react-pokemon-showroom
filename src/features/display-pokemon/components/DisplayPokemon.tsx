@@ -1,33 +1,32 @@
 import { connect } from 'react-redux';
-import { incremented, decremented } from '../../../stores';
+import { searchPokemon, PokemonState } from '../../../stores/searchedPokemon';
 
 const actionCreators = {
-	incremented,
-	decremented
+	searchPokemon
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DisplayPokemon({ counter, incremented, decremented }: any) {
+function DisplayPokemon({ searchPokemon, searchedPokemon }: any) {
 	return (
 		<>
-			<div>{counter}</div>
-			<h1>Vite + React</h1>
+			<h3>Search Pokemon</h3>
+			<h2>{searchedPokemon}</h2>
 			<div className="card">
-				<p onClick={incremented}>Increase</p>
-				<p onClick={decremented}>Decrese</p>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
+				<input
+					onChange={e => {
+						searchPokemon(e.target.value);
+					}}
+					type="text"
+					name="search-pokemon"
+					id="search-pokemon"
+				/>
 			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
 		</>
 	);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mapState = (state: any) => state;
+const mapState = (state: PokemonState) => state;
 
 const ConnectedDisplayPokemon = connect(
 	mapState,
