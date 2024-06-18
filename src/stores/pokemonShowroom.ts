@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import initialShowroomPokemons from '../config/initialShowroomPokemons.json';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export type PokemonProfile = {
 	name: string;
@@ -22,7 +22,6 @@ export type PokemonFullProfile = {
 
 export interface PokemonStackState {
 	currentPokemonIndex: number;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	pokemonStack: Partial<PokemonFullProfile>[];
 }
 
@@ -40,7 +39,8 @@ export const fetchThreePokemonProfiles = createAsyncThunk(
 			return axios.get(url || '');
 		});
 
-		return await Promise.all(results);
+		const resolvedResults: AxiosResponse[] = await Promise.all(results);
+		return resolvedResults.map(result => result.data);
 	}
 );
 
@@ -55,8 +55,26 @@ export const pokemonShowroomStackSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder.addCase(fetchThreePokemonProfiles.fulfilled, (state, action) => {
-			console.log({ state, action });
-			// (state.pokemonStack as unknown as PokemonFullProfile[]).push(action.payload);
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const extendedPokemonFullProfile = (action as any).payload;
+
+			const pokemonFullProfile: PokemonFullProfile[] =
+				extendedPokemonFullProfile
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					.map((pokemonProfile: any) => {
+						const pokemonFullProfile: PokemonFullProfile = {
+							name: pokemonProfile.name,
+							url: `https://pokeapi.co/api/v2/pokemon/${pokemonProfile.id}/`,
+							sprite: pokemonProfile.sprites.front_default,
+							types: pokemonProfile.types
+						};
+
+						return pokemonFullProfile;
+					});
+
+			(state.pokemonStack as unknown as PokemonFullProfile[]).push(
+				...pokemonFullProfile
+			);
 		});
 	}
 });

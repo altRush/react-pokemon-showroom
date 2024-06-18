@@ -6,7 +6,10 @@ import {
 	updatePokemonIndex
 } from '../../../stores/pokemonShowroom';
 import { useDispatch } from 'react-redux';
-import { getMoreThreePokemonsProfiles } from '../../../utils';
+import {
+	capitalizeFirstLetter,
+	getMoreThreePokemonsProfiles
+} from '../../../utils';
 import gen1Pokemons from '../../../config/gen-1-pokemons.json';
 
 const actionCreators = { updatePokemonIndex };
@@ -32,7 +35,7 @@ function PokemonShowroom(
 						return (
 							<div key={index}>
 								<img src={pokemon.sprite} alt="" />
-								<div>{pokemon.name}</div>
+								<div>{capitalizeFirstLetter(pokemon.name)}</div>
 							</div>
 						);
 					}
