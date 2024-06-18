@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import gen1Pokemons from '../config/gen-1-pokemons.json';
+import initialShowroomPokemons from '../config/initialShowroomPokemons.json';
 
 export interface PokemonStackState {
 	currentPokemonIndex: number;
@@ -8,8 +9,8 @@ export interface PokemonStackState {
 }
 
 const initialState = {
-	currentPokemonIndex: 0,
-	pokemonStack: []
+	currentPokemonIndex: 3,
+	pokemonStack: initialShowroomPokemons
 } satisfies PokemonStackState as PokemonStackState;
 
 export const pokemonShowroomStackSlice = createSlice({
