@@ -1,33 +1,63 @@
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import {
+	PokemonFullProfile,
 	PokemonStackState,
-	loadMoreThreePokemons
+	fetchThreePokemonProfiles,
+	updatePokemonIndex
 } from '../../../stores/pokemonShowroom';
+import { useDispatch } from 'react-redux';
+import { getMoreThreePokemonsProfiles } from '../../../utils';
+import gen1Pokemons from '../../../config/gen-1-pokemons.json';
 
-const actionCreators = { loadMoreThreePokemons };
+const actionCreators = { updatePokemonIndex };
 
 function PokemonShowroom(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	{ pokemonShowroomStack, loadMoreThreePokemons }: any
+	{ pokemonShowroomStack, updatePokemonIndex }: any
 ) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const dispatch = useDispatch<any>();
+	const { currentPokemonIndex } = useSelector(
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		state => (state as any).pokemonShowroomStack
+	);
 	return (
 		<>
 			<h2>PokemonShowroom</h2>
-			<button
-				onClick={() => {
-					loadMoreThreePokemons(pokemonShowroomStack?.currentPokemonIndex);
-				}}
-			>
-				Load more pokemons..
-			</button>
+
 			<div>
-				{
+				{pokemonShowroomStack?.pokemonStack.map(
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					pokemonShowroomStack?.pokemonStack.map((pokemon: any) => {
-						return <div>{pokemon.name}</div>;
-					})
-				}
+					(pokemon: any, index: number) => {
+						return (
+							<div key={index}>
+								<img src={pokemon.sprite} alt="" />
+								<div>{pokemon.name}</div>
+							</div>
+						);
+					}
+				)}
 			</div>
+			<p>
+				<button
+					onClick={async () => {
+						const newThreePokemonProfiles = getMoreThreePokemonsProfiles(
+							currentPokemonIndex,
+							gen1Pokemons.results
+						);
+
+						await updatePokemonIndex(currentPokemonIndex + 3);
+
+						dispatch(
+							fetchThreePokemonProfiles(
+								newThreePokemonProfiles as Partial<PokemonFullProfile>[]
+							)
+						);
+					}}
+				>
+					Load more pokemons..
+				</button>
+			</p>
 		</>
 	);
 }
