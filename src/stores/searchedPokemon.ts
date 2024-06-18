@@ -6,7 +6,7 @@ export const searchedPokemonSlice = createSlice({
 	initialState: 'bulbasaur',
 	reducers: {
 		searchPokemon(_, action: PayloadAction<string>) {
-			const filteredPokemon = gen1Pokemons.pokemon_species.filter(
+			const filteredPokemon = gen1Pokemons.results.filter(
 				pokemon => pokemon.name === action.payload
 			)[0];
 
