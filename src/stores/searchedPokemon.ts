@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import gen1Pokemons from '../config/gen-1-pokemons.json';
+import gen1Pokemons from '../data/gen-1-pokemons.json';
 
 export const searchedPokemonSlice = createSlice({
 	name: 'searchedPokemon',
