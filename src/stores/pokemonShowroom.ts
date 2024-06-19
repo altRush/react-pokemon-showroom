@@ -49,7 +49,7 @@ export const pokemonShowroomStackSlice = createSlice({
 	initialState,
 	reducers: {
 		updatePokemonIndex(state, action: PayloadAction<number>) {
-			state.currentPokemonIndex = action.payload + 3;
+			state.currentPokemonIndex = action.payload;
 			return state;
 		}
 	},
