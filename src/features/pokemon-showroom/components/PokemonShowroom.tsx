@@ -26,14 +26,14 @@ function PokemonShowroom(
 	);
 	return (
 		<>
-			<h2>PokemonShowroom</h2>
+			<div className="text-xl">PokemonShowroom</div>
 
-			<div className="grid grid-cols-3 gap-3">
+			<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
 				{pokemonShowroomStack?.pokemonStack.map(
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					(pokemon: any, index: number) => {
 						return (
-							<div key={index}>
+							<div className="grid justify-center" key={index}>
 								<img src={pokemon.sprite} alt="" />
 								<div>{capitalizeFirstLetter(pokemon.name)}</div>
 							</div>
@@ -43,6 +43,7 @@ function PokemonShowroom(
 			</div>
 			<p>
 				<button
+					className="btn btn-blue rounded-none"
 					onClick={async () => {
 						const newThreePokemonProfiles = getMoreThreePokemonsProfiles(
 							currentPokemonIndex,
