@@ -11,6 +11,7 @@ import {
 	getMoreThreePokemonsProfiles
 } from '../../../utils';
 import gen1Pokemons from '../../../data/gen-1-pokemons.json';
+import BackToIndex from '../../../components/BackToIndex';
 
 const actionCreators = { updatePokemonIndex };
 
@@ -62,6 +63,7 @@ function PokemonShowroom(
 					Load more pokemons..
 				</button>
 			</p>
+			<BackToIndex />
 		</>
 	);
 }

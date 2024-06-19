@@ -5,6 +5,7 @@ import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
 import './SearchPokemon.css';
+import BackToIndex from '../../../components/BackToIndex';
 
 const actionCreators = {
 	searchPokemon
@@ -56,6 +57,7 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 					/>
 				</div>
 			</div>
+			<BackToIndex />
 		</>
 	);
 }
