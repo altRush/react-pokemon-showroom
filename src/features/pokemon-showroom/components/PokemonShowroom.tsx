@@ -10,7 +10,7 @@ import {
 	capitalizeFirstLetter,
 	getMoreThreePokemonsProfiles
 } from '../../../utils';
-import gen1Pokemons from '../../../config/gen-1-pokemons.json';
+import gen1Pokemons from '../../../data/gen-1-pokemons.json';
 
 const actionCreators = { updatePokemonIndex };
 

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import initialShowroomPokemons from '../config/initialShowroomPokemons.json';
+import initialShowroomPokemons from '../data/initialShowroomPokemons.json';
 import axios, { AxiosResponse } from 'axios';
 
 export type PokemonProfile = {
