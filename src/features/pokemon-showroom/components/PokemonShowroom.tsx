@@ -28,7 +28,7 @@ function PokemonShowroom(
 		<>
 			<h2>PokemonShowroom</h2>
 
-			<div>
+			<div className="grid grid-cols-3 gap-3">
 				{pokemonShowroomStack?.pokemonStack.map(
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					(pokemon: any, index: number) => {
