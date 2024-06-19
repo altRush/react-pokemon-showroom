@@ -31,22 +31,30 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 
 	return (
 		<>
-			<h3>Search Pokemon</h3>
-			{pokemonSprite ? (
-				<img src={pokemonSprite} alt="" />
-			) : (
-				<img className="width-half" src={loadingSpinner} alt="" />
-			)}
-			<h2>{capitalizeFirstLetter(searchedPokemon)}</h2>
-			<div className="card">
-				<input
-					onChange={e => {
-						searchPokemon(e.target.value);
-					}}
-					type="text"
-					name="search-pokemon"
-					id="search-pokemon"
-				/>
+			<h2 className="text-xl text-red-700">Search Pokemon</h2>
+			<div className="grid">
+				<div className="grid justify-center">
+					{pokemonSprite ? (
+						<img className="justify-center" src={pokemonSprite} alt="" />
+					) : (
+						<img className="width-half" src={loadingSpinner} alt="" />
+					)}
+				</div>
+				<h2>{capitalizeFirstLetter(searchedPokemon)}</h2>
+				<div className="card">
+					<label className="block" htmlFor="search-pokemon">
+						Type a Pokemon's name:
+					</label>
+					<input
+						onChange={e => {
+							searchPokemon(e.target.value);
+						}}
+						type="text"
+						name="search-pokemon"
+						id="search-pokemon"
+						className="outline-none bg-white rounded-lg focus:ring focus:ring-red-500 focus:border-red-500"
+					/>
+				</div>
 			</div>
 		</>
 	);
