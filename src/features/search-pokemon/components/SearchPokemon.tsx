@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
-import './SearchPokemon.css';
 import BackToIndex from '../../../components/BackToIndex';
 
 const actionCreators = {
@@ -38,7 +37,7 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 					{pokemonSprite ? (
 						<img className="justify-center" src={pokemonSprite} alt="" />
 					) : (
-						<img className="width-half" src={loadingSpinner} alt="" />
+						<img className="w-1/2" src={loadingSpinner} alt="" />
 					)}
 				</div>
 				<h2>{capitalizeFirstLetter(searchedPokemon)}</h2>
@@ -53,7 +52,7 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 						type="text"
 						name="search-pokemon"
 						id="search-pokemon"
-						className="outline-none bg-white rounded-lg focus:ring focus:ring-red-500 focus:border-red-500"
+						className="outline-none text-slate-900 bg-white rounded-lg focus:ring focus:ring-red-500 focus:border-red-500"
 					/>
 				</div>
 			</div>
