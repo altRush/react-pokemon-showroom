@@ -28,13 +28,10 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 					`https://pokeapi.co/api/v2/pokemon/${searchedPokemon}`
 				);
 				setPokemonSprite(data.sprites.front_default);
+				setLoadingPokemonSprite(false);
 			}
 		})();
-
-		if (pokemonSprite) {
-			setLoadingPokemonSprite(false);
-		}
-	}, [pokemonSprite, searchedPokemon]);
+	}, [searchedPokemon]);
 
 	return (
 		<>
@@ -42,15 +39,19 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 			<div className="grid">
 				<div className="grid justify-center">
 					<div>
-						{pokemonSprite ? (
-							<img className="w-24 h-24" src={pokemonSprite} alt="" />
-						) : (
+						{
 							<img
 								className="w-24 h-24"
-								src={loadingPokemonSprite ? loadingSpinner : questionMark}
+								src={
+									pokemonSprite
+										? pokemonSprite
+										: loadingPokemonSprite
+										? loadingSpinner
+										: questionMark
+								}
 								alt=""
 							/>
-						)}
+						}
 					</div>
 				</div>
 				<h2>
