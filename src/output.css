@@ -562,8 +562,20 @@ video {
   display: grid;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .w-1\/2 {
   width: 50%;
+}
+
+.w-36 {
+  width: 9rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .justify-center {

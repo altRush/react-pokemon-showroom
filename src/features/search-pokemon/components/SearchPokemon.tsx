@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
+import questionMark from '../../../assets/question-mark.svg';
 import BackToIndex from '../../../components/BackToIndex';
 
 const actionCreators = {
@@ -13,6 +14,7 @@ const actionCreators = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 	const [pokemonSprite, setPokemonSprite] = useState('');
+	const [loadingPokemonSprite, setLoadingPokemonSprite] = useState(false);
 
 	useEffect(() => {
 		if (!searchedPokemon) {
@@ -20,6 +22,7 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 		}
 
 		(async () => {
+			setLoadingPokemonSprite(true);
 			if (searchedPokemon) {
 				const { data } = await axios.get(
 					`https://pokeapi.co/api/v2/pokemon/${searchedPokemon}`
@@ -27,20 +30,34 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 				setPokemonSprite(data.sprites.front_default);
 			}
 		})();
-	}, [searchedPokemon]);
+
+		if (pokemonSprite) {
+			setLoadingPokemonSprite(false);
+		}
+	}, [pokemonSprite, searchedPokemon]);
 
 	return (
 		<>
 			<h2 className="text-xl text-red-700">Search Pokemon</h2>
 			<div className="grid">
 				<div className="grid justify-center">
-					{pokemonSprite ? (
-						<img className="justify-center" src={pokemonSprite} alt="" />
-					) : (
-						<img className="w-1/2" src={loadingSpinner} alt="" />
-					)}
+					<div>
+						{pokemonSprite ? (
+							<img className="w-24 h-24" src={pokemonSprite} alt="" />
+						) : (
+							<img
+								className="w-24 h-24"
+								src={loadingPokemonSprite ? loadingSpinner : questionMark}
+								alt=""
+							/>
+						)}
+					</div>
 				</div>
-				<h2>{capitalizeFirstLetter(searchedPokemon)}</h2>
+				<h2>
+					{searchedPokemon
+						? capitalizeFirstLetter(searchedPokemon)
+						: 'Not found..'}
+				</h2>
 				<div className="card">
 					<label className="block" htmlFor="search-pokemon">
 						Type a Pokemon's name:
