@@ -38,7 +38,7 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 					{pokemonSprite ? (
 						<img className="justify-center" src={pokemonSprite} alt="" />
 					) : (
-						<img className="width-half" src={loadingSpinner} alt="" />
+						<img className="w-1/2" src={loadingSpinner} alt="" />
 					)}
 				</div>
 				<h2>{capitalizeFirstLetter(searchedPokemon)}</h2>
