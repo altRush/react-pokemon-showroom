@@ -6,24 +6,8 @@ import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
 import questionMark from '../../../assets/question-mark.svg';
 import BackToIndex from '../../../components/BackToIndex';
-// import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../../../stores';
-import {
-	searchPokemon
-	// SearchedPokemon
-} from '../../../stores/searchedPokemon';
-
-// const actionCreators = {
-// 	searchPokemon
-// };
-
-// interface IProps {
-// 	searchedPokemon: SearchedPokemon;
-// 	searchPokemon: ActionCreatorWithPayload<
-// 		string,
-// 		'searchedPokemon/searchPokemon'
-// 	>;
-// }
+import { searchPokemon } from '../../../stores/searchedPokemon';
 
 function SearchPokemon() {
 	const searchedPokemon = useSelector(
