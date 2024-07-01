@@ -1,18 +1,35 @@
-import { connect } from 'react-redux';
-import { searchPokemon, PokemonState } from '../../../stores/searchedPokemon';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
 import questionMark from '../../../assets/question-mark.svg';
 import BackToIndex from '../../../components/BackToIndex';
-
-const actionCreators = {
+// import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { AppDispatch, RootState } from '../../../stores';
+import {
 	searchPokemon
-};
+	// SearchedPokemon
+} from '../../../stores/searchedPokemon';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
+// const actionCreators = {
+// 	searchPokemon
+// };
+
+// interface IProps {
+// 	searchedPokemon: SearchedPokemon;
+// 	searchPokemon: ActionCreatorWithPayload<
+// 		string,
+// 		'searchedPokemon/searchPokemon'
+// 	>;
+// }
+
+function SearchPokemon() {
+	const searchedPokemon = useSelector(
+		(state: RootState) => state.searchedPokemon
+	);
+	const dispatch = useDispatch<AppDispatch>();
 	const [pokemonSprite, setPokemonSprite] = useState('');
 	const [loadingPokemonSprite, setLoadingPokemonSprite] = useState(false);
 
@@ -65,7 +82,7 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 					</label>
 					<input
 						onChange={e => {
-							searchPokemon(e.target.value);
+							dispatch(searchPokemon(e.target.value));
 						}}
 						type="text"
 						name="search-pokemon"
@@ -79,9 +96,4 @@ function SearchPokemon({ searchPokemon, searchedPokemon }: any) {
 	);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mapState = (state: PokemonState) => state;
-
-const ConnectedSearchPokemon = connect(mapState, actionCreators)(SearchPokemon);
-
-export default ConnectedSearchPokemon;
+export default SearchPokemon;

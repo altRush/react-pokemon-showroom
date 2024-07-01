@@ -1,7 +1,6 @@
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
 	PokemonFullProfile,
-	PokemonStackState,
 	fetchThreePokemonProfiles,
 	updatePokemonIndex
 } from '../../../stores/pokemonShowroom';
@@ -12,35 +11,26 @@ import {
 } from '../../../utils';
 import gen1Pokemons from '../../../data/gen-1-pokemons.json';
 import BackToIndex from '../../../components/BackToIndex';
+import { AppDispatch, RootState } from '../../../stores';
 
-const actionCreators = { updatePokemonIndex };
-
-function PokemonShowroom(
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	{ pokemonShowroomStack, updatePokemonIndex }: any
-) {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const dispatch = useDispatch<any>();
-	const { currentPokemonIndex } = useSelector(
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		state => (state as any).pokemonShowroomStack
+function PokemonShowroom() {
+	const dispatch = useDispatch<AppDispatch>();
+	const { currentPokemonIndex, pokemonStack } = useSelector(
+		(state: RootState) => state.pokemonShowroomStack
 	);
 	return (
 		<>
 			<div className="text-xl">PokemonShowroom</div>
 
 			<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
-				{pokemonShowroomStack?.pokemonStack.map(
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					(pokemon: any, index: number) => {
-						return (
-							<div className="grid justify-center" key={index}>
-								<img src={pokemon.sprite} alt="" />
-								<div>{capitalizeFirstLetter(pokemon.name)}</div>
-							</div>
-						);
-					}
-				)}
+				{pokemonStack.map((pokemon, index: number) => {
+					return (
+						<div className="grid justify-center" key={index}>
+							<img src={pokemon.sprite} alt="" />
+							<div>{capitalizeFirstLetter(pokemon.name)}</div>
+						</div>
+					);
+				})}
 			</div>
 			<p>
 				<button
@@ -51,7 +41,7 @@ function PokemonShowroom(
 							gen1Pokemons.results
 						);
 
-						await updatePokemonIndex(currentPokemonIndex + 3);
+						dispatch(updatePokemonIndex(currentPokemonIndex + 3));
 
 						dispatch(
 							fetchThreePokemonProfiles(
@@ -68,12 +58,4 @@ function PokemonShowroom(
 	);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mapState = (state: PokemonStackState) => state;
-
-const ConnectedPokemonShowroom = connect(
-	mapState,
-	actionCreators
-)(PokemonShowroom);
-
-export default ConnectedPokemonShowroom;
+export default PokemonShowroom;

@@ -55,22 +55,19 @@ export const pokemonShowroomStackSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder.addCase(fetchThreePokemonProfiles.fulfilled, (state, action) => {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const extendedPokemonFullProfile = (action as any).payload;
+			const extendedPokemonFullProfile = action.payload;
 
 			const pokemonFullProfile: PokemonFullProfile[] =
-				extendedPokemonFullProfile
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					.map((pokemonProfile: any) => {
-						const pokemonFullProfile: PokemonFullProfile = {
-							name: pokemonProfile.name,
-							url: `https://pokeapi.co/api/v2/pokemon/${pokemonProfile.id}/`,
-							sprite: pokemonProfile.sprites.front_default,
-							types: pokemonProfile.types
-						};
+				extendedPokemonFullProfile.map(pokemonProfile => {
+					const pokemonFullProfile: PokemonFullProfile = {
+						name: pokemonProfile.name,
+						url: `https://pokeapi.co/api/v2/pokemon/${pokemonProfile.id}/`,
+						sprite: pokemonProfile.sprites.front_default,
+						types: pokemonProfile.types
+					};
 
-						return pokemonFullProfile;
-					});
+					return pokemonFullProfile;
+				});
 
 			(state.pokemonStack as unknown as PokemonFullProfile[]).push(
 				...pokemonFullProfile

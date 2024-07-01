@@ -21,4 +21,4 @@ const { actions, reducer } = searchedPokemonSlice;
 export const { searchPokemon } = actions;
 export { reducer };
 
-export type PokemonState = ReturnType<typeof reducer>;
+export type SearchedPokemon = ReturnType<typeof reducer>;
