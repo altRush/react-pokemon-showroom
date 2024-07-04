@@ -48,7 +48,12 @@
 	},
 	"jest": {
 		"preset": "ts-jest",
-		"testEnvironment": "jsdom"
+		"testEnvironment": "jsdom",
+		"collectCoverage": true,
+		"collectCoverageFrom": [
+			"src/**/*.{ts,tsx,js,jsx}",
+			"!src/**/*.d.ts"
+		]
 	},
 	"moduleNameMapper": {
 		"\\.(css|less)$": "identity-obj-proxy"
