@@ -1,3 +1,3 @@
-import ConnectedSearchPokemon from './components/SearchPokemon';
+import SearchPokemon from './components/SearchPokemon';
 
-export { ConnectedSearchPokemon };
+export { SearchPokemon };

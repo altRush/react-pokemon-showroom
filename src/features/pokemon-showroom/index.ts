@@ -1,3 +1,3 @@
-import ConnectedPokemonShowroom from './components/PokemonShowroom';
+import PokemonShowroom from './components/PokemonShowroom';
 
-export { ConnectedPokemonShowroom };
+export { PokemonShowroom };

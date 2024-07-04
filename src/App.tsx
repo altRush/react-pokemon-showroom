@@ -1,15 +1,15 @@
 import { Provider } from 'react-redux';
 import './App.css';
-import { ConnectedSearchPokemon } from './features/search-pokemon';
-import { ConnectedPokemonShowroom } from './features/pokemon-showroom';
+import { SearchPokemon } from './features/search-pokemon';
+import { PokemonShowroom } from './features/pokemon-showroom';
 import store from './stores';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 
 const router = createBrowserRouter([
 	{ path: '/', element: <Layout /> },
-	{ path: '/search-pokemon', element: <ConnectedSearchPokemon /> },
-	{ path: 'pokemon-showroom', element: <ConnectedPokemonShowroom /> }
+	{ path: '/search-pokemon', element: <SearchPokemon /> },
+	{ path: 'pokemon-showroom', element: <PokemonShowroom /> }
 ]);
 
 function App() {
