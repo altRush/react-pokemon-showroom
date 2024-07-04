@@ -34,6 +34,16 @@ function SearchPokemon() {
 		})();
 	}, [searchedPokemon]);
 
+	const displaySprite = (pokemonSprite: string): string => {
+		if (loadingPokemonSprite) {
+			if (searchedPokemon) {
+				return loadingSpinner;
+			}
+			return questionMark;
+		}
+		return pokemonSprite;
+	};
+
 	return (
 		<>
 			<h2 className="text-xl text-red-700">Search Pokemon</h2>
@@ -43,13 +53,7 @@ function SearchPokemon() {
 						{
 							<img
 								className="w-24 h-24"
-								src={
-									pokemonSprite
-										? pokemonSprite
-										: loadingPokemonSprite
-										? loadingSpinner
-										: questionMark
-								}
+								src={displaySprite(pokemonSprite)}
 								alt=""
 							/>
 						}
