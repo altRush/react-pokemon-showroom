@@ -5,11 +5,15 @@ import { PokemonShowroom } from './features/pokemon-showroom';
 import store from './stores';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
+import gen1Pokemons from './data/gen-1-pokemons.json';
 
 const router = createBrowserRouter([
 	{ path: '/', element: <Layout /> },
 	{ path: '/search-pokemon', element: <SearchPokemon /> },
-	{ path: 'pokemon-showroom', element: <PokemonShowroom /> }
+	{
+		path: 'pokemon-showroom',
+		element: <PokemonShowroom pokemonProfiles={gen1Pokemons} />
+	}
 ]);
 
 function App() {

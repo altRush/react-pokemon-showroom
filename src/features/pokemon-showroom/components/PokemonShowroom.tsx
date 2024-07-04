@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import {
-	PokemonFullProfile,
+	PokemonProfile,
 	fetchThreePokemonProfiles,
 	updatePokemonIndex
 } from '../../../stores/pokemonShowroom';
@@ -9,11 +9,16 @@ import {
 	capitalizeFirstLetter,
 	getMoreThreePokemonsProfiles
 } from '../../../utils';
-import gen1Pokemons from '../../../data/gen-1-pokemons.json';
+
 import BackToIndex from '../../../components/BackToIndex';
 import { AppDispatch, RootState } from '../../../stores';
 
-function PokemonShowroom() {
+interface IProps {
+	pokemonProfiles: PokemonProfile[];
+}
+
+function PokemonShowroom({ pokemonProfiles }: IProps) {
+	const gen1Pokemons = pokemonProfiles;
 	const dispatch = useDispatch<AppDispatch>();
 	const { currentPokemonIndex, pokemonStack } = useSelector(
 		(state: RootState) => state.pokemonShowroomStack
@@ -38,14 +43,14 @@ function PokemonShowroom() {
 					onClick={async () => {
 						const newThreePokemonProfiles = getMoreThreePokemonsProfiles(
 							currentPokemonIndex,
-							gen1Pokemons.results
+							gen1Pokemons
 						);
 
 						dispatch(updatePokemonIndex(currentPokemonIndex + 3));
 
 						dispatch(
 							fetchThreePokemonProfiles(
-								newThreePokemonProfiles as Partial<PokemonFullProfile>[]
+								newThreePokemonProfiles as PokemonProfile[]
 							)
 						);
 					}}
