@@ -52,6 +52,7 @@ function SearchPokemon() {
 					<div>
 						{
 							<img
+								data-testid="search-pokemon-image"
 								className="w-24 h-24"
 								src={displaySprite(pokemonSprite)}
 								alt=""
@@ -69,6 +70,7 @@ function SearchPokemon() {
 						Type a Pokemon's name:
 					</label>
 					<input
+						data-testid="search-pokemon-input"
 						onChange={e => {
 							dispatch(searchPokemon(e.target.value));
 						}}
