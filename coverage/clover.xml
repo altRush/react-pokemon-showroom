@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720145097975" clover="3.2.0">
-  <project timestamp="1720145097975" name="All files">
-    <metrics statements="117" coveredstatements="54" conditionals="10" coveredconditionals="1" methods="25" coveredmethods="9" elements="152" coveredelements="64" complexity="0" loc="117" ncloc="117" packages="8" files="12" classes="12"/>
+<coverage generated="1720145758334" clover="3.2.0">
+  <project timestamp="1720145758334" name="All files">
+    <metrics statements="117" coveredstatements="56" conditionals="10" coveredconditionals="1" methods="25" coveredmethods="10" elements="152" coveredelements="67" complexity="0" loc="117" ncloc="117" packages="8" files="12" classes="12"/>
     <package name="src">
       <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.tsx" path="/home/rush/Coding/react-pokemon-showroom/src/App.tsx">
@@ -169,14 +169,14 @@
       </file>
     </package>
     <package name="src.utils">
-      <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="index.ts" path="/home/rush/Coding/react-pokemon-showroom/src/utils/index.ts">
-        <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="4" count="6" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
       </file>
     </package>
   </project>
