@@ -53,7 +53,8 @@
 		"collectCoverage": true,
 		"collectCoverageFrom": [
 			"src/**/*.{ts,tsx,js,jsx}",
-			"!src/**/*.d.ts"
+			"!src/**/*.d.ts",
+			"!src/main.tsx"
 		],
 		"transform": {
 			".+\\.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
