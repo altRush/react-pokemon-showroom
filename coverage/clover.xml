@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720157226460" clover="3.2.0">
-  <project timestamp="1720157226460" name="All files">
-    <metrics statements="124" coveredstatements="92" conditionals="10" coveredconditionals="2" methods="25" coveredmethods="17" elements="159" coveredelements="111" complexity="0" loc="124" ncloc="124" packages="10" files="15" classes="15"/>
+<coverage generated="1720158483962" clover="3.2.0">
+  <project timestamp="1720158483962" name="All files">
+    <metrics statements="124" coveredstatements="96" conditionals="10" coveredconditionals="4" methods="25" coveredmethods="19" elements="159" coveredelements="119" complexity="0" loc="124" ncloc="124" packages="10" files="15" classes="15"/>
     <package name="src">
       <metrics statements="17" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="App.tsx" path="/home/rush/Coding/react-pokemon-showroom/src/App.tsx">
@@ -60,11 +60,11 @@
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="gen-1-pokemons.ts" path="/home/rush/Coding/react-pokemon-showroom/src/data/gen-1-pokemons.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="4" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
       </file>
       <file name="initialShowroomPokemons.ts" path="/home/rush/Coding/react-pokemon-showroom/src/data/initialShowroomPokemons.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="4" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
       </file>
     </package>
     <package name="src.features.pokemon-showroom">
@@ -142,52 +142,52 @@
       </file>
     </package>
     <package name="src.store">
-      <metrics statements="37" coveredstatements="33" conditionals="4" coveredconditionals="2" methods="10" coveredmethods="8"/>
+      <metrics statements="37" coveredstatements="37" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="10"/>
       <file name="index.ts" path="/home/rush/Coding/react-pokemon-showroom/src/store/index.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
       </file>
       <file name="pokemonShowroom.ts" path="/home/rush/Coding/react-pokemon-showroom/src/store/pokemonShowroom.ts">
         <metrics statements="22" coveredstatements="22" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="8"/>
-        <line num="1" count="4" type="stmt"/>
-        <line num="2" count="4" type="stmt"/>
-        <line num="3" count="4" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="33" count="4" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
         <line num="36" count="9" type="stmt"/>
         <line num="38" count="3" type="stmt"/>
         <line num="39" count="9" type="cond" truecount="2" falsecount="0"/>
         <line num="42" count="3" type="stmt"/>
         <line num="43" count="5" type="stmt"/>
-        <line num="47" count="4" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
         <line num="53" count="1" type="stmt"/>
-        <line num="57" count="2" type="stmt"/>
+        <line num="57" count="3" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
         <line num="62" count="3" type="stmt"/>
         <line num="69" count="3" type="stmt"/>
         <line num="72" count="1" type="stmt"/>
-        <line num="79" count="4" type="stmt"/>
-        <line num="81" count="4" type="stmt"/>
-        <line num="82" count="4" type="stmt"/>
+        <line num="79" count="5" type="stmt"/>
+        <line num="81" count="5" type="stmt"/>
+        <line num="82" count="5" type="stmt"/>
       </file>
       <file name="searchedPokemon.ts" path="/home/rush/Coding/react-pokemon-showroom/src/store/searchedPokemon.ts">
-        <metrics statements="10" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="19" count="3" type="stmt"/>
-        <line num="21" count="3" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="453" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.utils">
