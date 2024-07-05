@@ -2,17 +2,17 @@ import '@testing-library/jest-dom';
 
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
-import PokemonShowroom from '../../../features/pokemon-showroom/components/PokemonShowroom';
+import PokemonShowroom from '../../../../features/pokemon-showroom/components/PokemonShowroom';
 
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { thunk } from 'redux-thunk';
 
-import * as initialShowroomPokemons from '../../../data/initialShowroomPokemons.json';
-import * as gen1Pokemons from '../../../data/gen-1-pokemons.json';
-import * as pokemonShowroom from '../../../stores/pokemonShowroom';
-import * as utils from '../../../utils';
+import * as initialShowroomPokemons from '../../../../data/initialShowroomPokemons.json';
+import * as gen1Pokemons from '../../../../data/gen-1-pokemons.json';
+import * as pokemonShowroom from '../../../../stores/pokemonShowroom';
+import * as utils from '../../../../utils';
 
 const next3PokemonsProfiles = [
 	{ name: 'charmander', url: 'https://pokeapi.co/api/v2/pokemon/4/' },
