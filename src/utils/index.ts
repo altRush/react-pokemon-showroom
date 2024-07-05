@@ -1,4 +1,4 @@
-import { PokemonFullProfile, PokemonProfile } from '../stores/pokemonShowroom';
+import { PokemonFullProfile, PokemonProfile } from '../store/pokemonShowroom';
 
 export function capitalizeFirstLetter(word: string): string {
 	return word.charAt(0).toUpperCase() + word.slice(1);

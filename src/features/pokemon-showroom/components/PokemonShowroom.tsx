@@ -3,7 +3,7 @@ import {
 	PokemonProfile,
 	fetchThreePokemonProfiles,
 	updatePokemonIndex
-} from '../../../stores/pokemonShowroom';
+} from '../../../store/pokemonShowroom';
 import { useDispatch } from 'react-redux';
 import {
 	capitalizeFirstLetter,
@@ -11,7 +11,7 @@ import {
 } from '../../../utils';
 
 import BackToIndex from '../../../components/BackToIndex';
-import { AppDispatch, RootState } from '../../../stores';
+import { AppDispatch, RootState } from '../../../store';
 
 interface IProps {
 	pokemonProfiles: PokemonProfile[];

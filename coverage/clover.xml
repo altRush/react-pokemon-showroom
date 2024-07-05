@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720145758334" clover="3.2.0">
-  <project timestamp="1720145758334" name="All files">
+<coverage generated="1720146760778" clover="3.2.0">
+  <project timestamp="1720146760778" name="All files">
     <metrics statements="117" coveredstatements="56" conditionals="10" coveredconditionals="1" methods="25" coveredmethods="10" elements="152" coveredelements="67" complexity="0" loc="117" ncloc="117" packages="8" files="12" classes="12"/>
     <package name="src">
       <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -119,9 +119,9 @@
         <line num="87" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="src.stores">
+    <package name="src.store">
       <metrics statements="37" coveredstatements="19" conditionals="4" coveredconditionals="1" methods="10" coveredmethods="3"/>
-      <file name="index.ts" path="/home/rush/Coding/react-pokemon-showroom/src/stores/index.ts">
+      <file name="index.ts" path="/home/rush/Coding/react-pokemon-showroom/src/store/index.ts">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -129,7 +129,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
       </file>
-      <file name="pokemonShowroom.ts" path="/home/rush/Coding/react-pokemon-showroom/src/stores/pokemonShowroom.ts">
+      <file name="pokemonShowroom.ts" path="/home/rush/Coding/react-pokemon-showroom/src/store/pokemonShowroom.ts">
         <metrics statements="22" coveredstatements="13" conditionals="2" coveredconditionals="1" methods="8" coveredmethods="3"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -154,7 +154,7 @@
         <line num="81" count="2" type="stmt"/>
         <line num="82" count="2" type="stmt"/>
       </file>
-      <file name="searchedPokemon.ts" path="/home/rush/Coding/react-pokemon-showroom/src/stores/searchedPokemon.ts">
+      <file name="searchedPokemon.ts" path="/home/rush/Coding/react-pokemon-showroom/src/store/searchedPokemon.ts">
         <metrics statements="10" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>

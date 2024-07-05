@@ -11,7 +11,7 @@ import { thunk } from 'redux-thunk';
 
 import * as initialShowroomPokemons from '../../../../data/initialShowroomPokemons.json';
 import * as gen1Pokemons from '../../../../data/gen-1-pokemons.json';
-import * as pokemonShowroom from '../../../../stores/pokemonShowroom';
+import * as pokemonShowroom from '../../../../store/pokemonShowroom';
 import * as utils from '../../../../utils';
 
 const next3PokemonsProfiles = [

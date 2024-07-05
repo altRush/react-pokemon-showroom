@@ -6,8 +6,8 @@ import { capitalizeFirstLetter } from '../../../utils';
 import loadingSpinner from '../../../assets/bouncing-circles.svg';
 import questionMark from '../../../assets/question-mark.svg';
 import BackToIndex from '../../../components/BackToIndex';
-import { AppDispatch, RootState } from '../../../stores';
-import { searchPokemon } from '../../../stores/searchedPokemon';
+import { AppDispatch, RootState } from '../../../store';
+import { searchPokemon } from '../../../store/searchedPokemon';
 
 function SearchPokemon() {
 	const searchedPokemon = useSelector(
