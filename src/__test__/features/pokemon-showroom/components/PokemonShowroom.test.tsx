@@ -3,14 +3,14 @@ import '@testing-library/jest-dom';
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
 import PokemonShowroom from '../../../../features/pokemon-showroom/components/PokemonShowroom';
+import initialShowroomPokemons from '../../../../data/initialShowroomPokemons';
+import gen1Pokemons from '../../../../data/gen-1-pokemons';
 
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { thunk } from 'redux-thunk';
 
-import * as initialShowroomPokemons from '../../../../data/initialShowroomPokemons.json';
-import * as gen1Pokemons from '../../../../data/gen-1-pokemons.json';
 import * as pokemonShowroom from '../../../../store/pokemonShowroom';
 import * as utils from '../../../../utils';
 

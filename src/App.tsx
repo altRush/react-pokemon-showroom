@@ -5,7 +5,7 @@ import { PokemonShowroom } from './features/pokemon-showroom';
 import store from './store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
-import gen1Pokemons from './data/gen-1-pokemons.json';
+import gen1Pokemons from './data/gen-1-pokemons';
 
 const router = createBrowserRouter([
 	{ path: '/', element: <Layout /> },
