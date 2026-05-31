@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>25/25</span>
             </div>
         
             
@@ -145,7 +145,11 @@
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,10 +173,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,10 +196,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -217,8 +223,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -246,26 +254,22 @@ export type PokemonFullProfile = {
 			name: string;
 			url: string;
 		};
-	};
+	}[];
 };
 &nbsp;
 export interface PokemonStackState {
 	currentPokemonIndex: number;
 	pokemonStack: Partial&lt;PokemonFullProfile&gt;[];
+	isLoading: boolean;
 }
-&nbsp;
-const initialState = {
-	currentPokemonIndex: 3,
-	pokemonStack: initialShowroomPokemons
-};
 &nbsp;
 export const fetchThreePokemonProfiles = createAsyncThunk(
 	'pokemonShowroom/fetchThreePokemonProfiles',
 	async (threePokemons: Partial&lt;PokemonFullProfile&gt;[]) =&gt; {
-		const urlsToFetch = threePokemons.map(pokemon =&gt; pokemon.url);
+		const urlsToFetch = threePokemons.map(pokemon =&gt; pokemon.url ?? '');
 &nbsp;
 		const results = urlsToFetch.map(url =&gt; {
-			return axios.get(url || '');
+			return axios.get(url);
 		});
 &nbsp;
 		const resolvedResults: AxiosResponse[] = await Promise.all(results);
@@ -275,14 +279,20 @@ export const fetchThreePokemonProfiles = createAsyncThunk(
 &nbsp;
 export const pokemonShowroomStackSlice = createSlice({
 	name: 'pokemonShowroomStack',
-	initialState,
+	initialState: {
+		currentPokemonIndex: 3,
+		pokemonStack: initialShowroomPokemons,
+		isLoading: false
+	},
 	reducers: {
 		updatePokemonIndex(state, action: PayloadAction&lt;number&gt;) {
 			state.currentPokemonIndex = action.payload;
-			return state;
 		}
 	},
 	extraReducers: builder =&gt; {
+		builder.addCase(fetchThreePokemonProfiles.pending, state =&gt; {
+			state.isLoading = true;
+		});
 		builder.addCase(fetchThreePokemonProfiles.fulfilled, (state, action) =&gt; {
 			const extendedPokemonFullProfile = action.payload;
 &nbsp;
@@ -298,9 +308,11 @@ export const pokemonShowroomStackSlice = createSlice({
 					return pokemonFullProfile;
 				});
 &nbsp;
-			(state.pokemonStack as unknown as PokemonFullProfile[]).push(
-				...pokemonFullProfile
-			);
+			state.pokemonStack.push(...pokemonFullProfile);
+			state.isLoading = false;
+		});
+		builder.addCase(fetchThreePokemonProfiles.rejected, state =&gt; {
+			state.isLoading = false;
 		});
 	}
 });
@@ -316,7 +328,7 @@ export { reducer };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-05T07:30:58.898Z
+                at 2026-05-31T08:25:39.512Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

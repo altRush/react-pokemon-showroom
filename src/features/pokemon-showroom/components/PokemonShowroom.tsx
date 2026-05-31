@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 	PokemonProfile,
 	fetchThreePokemonProfiles,
 	updatePokemonIndex
 } from '../../../store/pokemonShowroom';
-import { useDispatch } from 'react-redux';
 import {
 	capitalizeFirstLetter,
 	getMoreThreePokemonsProfiles
@@ -18,9 +17,8 @@ interface IProps {
 }
 
 function PokemonShowroom({ pokemonProfiles }: IProps) {
-	const gen1Pokemons = pokemonProfiles;
 	const dispatch = useDispatch<AppDispatch>();
-	const { currentPokemonIndex, pokemonStack } = useSelector(
+	const { currentPokemonIndex, pokemonStack, isLoading } = useSelector(
 		(state: RootState) => state.pokemonShowroomStack
 	);
 	return (
@@ -28,9 +26,9 @@ function PokemonShowroom({ pokemonProfiles }: IProps) {
 			<div className="text-xl">PokemonShowroom</div>
 
 			<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3">
-				{pokemonStack.map((pokemon, index: number) => {
+				{pokemonStack.map(pokemon => {
 					return (
-						<div className="grid justify-center" key={index}>
+						<div className="grid justify-center" key={pokemon.name}>
 							<img src={pokemon.sprite} alt="" />
 							<div>{capitalizeFirstLetter(pokemon.name)}</div>
 						</div>
@@ -40,22 +38,21 @@ function PokemonShowroom({ pokemonProfiles }: IProps) {
 			<p>
 				<button
 					className="btn btn-blue rounded-none"
-					onClick={async () => {
+					disabled={isLoading}
+					onClick={() => {
 						const newThreePokemonProfiles = getMoreThreePokemonsProfiles(
 							currentPokemonIndex,
-							gen1Pokemons
+							pokemonProfiles
 						);
 
 						dispatch(updatePokemonIndex(currentPokemonIndex + 3));
 
 						dispatch(
-							fetchThreePokemonProfiles(
-								newThreePokemonProfiles as PokemonProfile[]
-							)
+							fetchThreePokemonProfiles(newThreePokemonProfiles)
 						);
 					}}
 				>
-					Load more pokemons..
+					{isLoading ? 'Loading...' : 'Load more pokemons..'}
 				</button>
 			</p>
 			<BackToIndex />

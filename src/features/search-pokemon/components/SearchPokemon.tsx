@@ -7,7 +7,21 @@ import loadingSpinner from '../../../assets/bouncing-circles.svg';
 import questionMark from '../../../assets/question-mark.svg';
 import BackToIndex from '../../../components/BackToIndex';
 import { AppDispatch, RootState } from '../../../store';
-import { searchPokemon } from '../../../store/searchedPokemon';
+import { setSearchedPokemon } from '../../../store/searchedPokemon';
+
+function displaySprite(
+	pokemonSprite: string,
+	loadingPokemonSprite: boolean,
+	searchedPokemon: string
+): string {
+	if (loadingPokemonSprite) {
+		if (searchedPokemon) {
+			return loadingSpinner;
+		}
+		return questionMark;
+	}
+	return pokemonSprite;
+}
 
 function SearchPokemon() {
 	const searchedPokemon = useSelector(
@@ -20,29 +34,27 @@ function SearchPokemon() {
 	useEffect(() => {
 		if (!searchedPokemon) {
 			setPokemonSprite('');
+			return;
 		}
+
+		const abortController = new AbortController();
 
 		(async () => {
 			setLoadingPokemonSprite(true);
-			if (searchedPokemon) {
+			try {
 				const { data } = await axios.get(
-					`https://pokeapi.co/api/v2/pokemon/${searchedPokemon}`
+					`https://pokeapi.co/api/v2/pokemon/${searchedPokemon}`,
+					{ signal: abortController.signal }
 				);
 				setPokemonSprite(data.sprites.front_default);
 				setLoadingPokemonSprite(false);
+			} catch {
+				setLoadingPokemonSprite(false);
 			}
 		})();
-	}, [searchedPokemon]);
 
-	const displaySprite = (pokemonSprite: string): string => {
-		if (loadingPokemonSprite) {
-			if (searchedPokemon) {
-				return loadingSpinner;
-			}
-			return questionMark;
-		}
-		return pokemonSprite;
-	};
+		return () => abortController.abort();
+	}, [searchedPokemon]);
 
 	return (
 		<>
@@ -50,14 +62,12 @@ function SearchPokemon() {
 			<div className="grid">
 				<div className="grid justify-center">
 					<div>
-						{
-							<img
-								data-testid="search-pokemon-image"
-								className="w-24 h-24"
-								src={displaySprite(pokemonSprite)}
-								alt=""
-							/>
-						}
+						<img
+							data-testid="search-pokemon-image"
+							className="w-24 h-24"
+							src={displaySprite(pokemonSprite, loadingPokemonSprite, searchedPokemon)}
+							alt=""
+						/>
 					</div>
 				</div>
 				<h2>
@@ -72,7 +82,7 @@ function SearchPokemon() {
 					<input
 						data-testid="search-pokemon-input"
 						onChange={e => {
-							dispatch(searchPokemon(e.target.value));
+							dispatch(setSearchedPokemon(e.target.value));
 						}}
 						type="text"
 						name="search-pokemon"

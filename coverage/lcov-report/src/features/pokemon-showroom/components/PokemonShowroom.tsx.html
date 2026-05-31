@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -126,16 +126,7 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,10 +137,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -172,16 +167,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,13 +189,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useSelector } from 'react-redux';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useSelector, useDispatch } from 'react-redux';
 import {
 	PokemonProfile,
 	fetchThreePokemonProfiles,
 	updatePokemonIndex
 } from '../../../store/pokemonShowroom';
-import { useDispatch } from 'react-redux';
 import {
 	capitalizeFirstLetter,
 	getMoreThreePokemonsProfiles
@@ -215,9 +208,8 @@ interface IProps {
 }
 &nbsp;
 function PokemonShowroom({ pokemonProfiles }: IProps) {
-	const gen1Pokemons = pokemonProfiles;
 	const dispatch = useDispatch&lt;AppDispatch&gt;();
-	const { currentPokemonIndex, pokemonStack } = useSelector(
+	const { currentPokemonIndex, pokemonStack, isLoading } = useSelector(
 		(state: RootState) =&gt; state.pokemonShowroomStack
 	);
 	return (
@@ -225,9 +217,9 @@ function PokemonShowroom({ pokemonProfiles }: IProps) {
 			&lt;div className="text-xl"&gt;PokemonShowroom&lt;/div&gt;
 &nbsp;
 			&lt;div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3"&gt;
-				{pokemonStack.map((pokemon, index: number) =&gt; {
+				{pokemonStack.map(pokemon =&gt; {
 					return (
-						&lt;div className="grid justify-center" key={index}&gt;
+						&lt;div className="grid justify-center" key={pokemon.name}&gt;
 							&lt;img src={pokemon.sprite} alt="" /&gt;
 							&lt;div&gt;{capitalizeFirstLetter(pokemon.name)}&lt;/div&gt;
 						&lt;/div&gt;
@@ -237,22 +229,21 @@ function PokemonShowroom({ pokemonProfiles }: IProps) {
 			&lt;p&gt;
 				&lt;button
 					className="btn btn-blue rounded-none"
-					onClick={async () =&gt; {
+					disabled={isLoading}
+					onClick={() =&gt; {
 						const newThreePokemonProfiles = getMoreThreePokemonsProfiles(
 							currentPokemonIndex,
-							gen1Pokemons
+							pokemonProfiles
 						);
 &nbsp;
 						dispatch(updatePokemonIndex(currentPokemonIndex + 3));
 &nbsp;
 						dispatch(
-							fetchThreePokemonProfiles(
-								newThreePokemonProfiles as PokemonProfile[]
-							)
+							fetchThreePokemonProfiles(newThreePokemonProfiles)
 						);
 					}}
 				&gt;
-					Load more pokemons..
+					{isLoading ? <span class="branch-0 cbranch-no" title="branch not covered" >'Loading...' </span>: 'Load more pokemons..'}
 				&lt;/button&gt;
 			&lt;/p&gt;
 			&lt;BackToIndex /&gt;
@@ -268,7 +259,7 @@ export default PokemonShowroom;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-05T07:30:58.898Z
+                at 2026-05-31T08:25:39.512Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

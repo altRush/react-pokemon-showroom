@@ -29,7 +29,8 @@ describe('<PokemonShowroom />', () => {
 		const store = mockStore({
 			pokemonShowroomStack: {
 				pokemonStack: initialShowroomPokemons,
-				currentPokemonIndex: 3
+				currentPokemonIndex: 3,
+				isLoading: false
 			}
 		});
 

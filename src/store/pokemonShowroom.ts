@@ -17,26 +17,22 @@ export type PokemonFullProfile = {
 			name: string;
 			url: string;
 		};
-	};
+	}[];
 };
 
 export interface PokemonStackState {
 	currentPokemonIndex: number;
 	pokemonStack: Partial<PokemonFullProfile>[];
+	isLoading: boolean;
 }
-
-const initialState = {
-	currentPokemonIndex: 3,
-	pokemonStack: initialShowroomPokemons
-};
 
 export const fetchThreePokemonProfiles = createAsyncThunk(
 	'pokemonShowroom/fetchThreePokemonProfiles',
 	async (threePokemons: Partial<PokemonFullProfile>[]) => {
-		const urlsToFetch = threePokemons.map(pokemon => pokemon.url);
+		const urlsToFetch = threePokemons.map(pokemon => pokemon.url ?? '');
 
 		const results = urlsToFetch.map(url => {
-			return axios.get(url || '');
+			return axios.get(url);
 		});
 
 		const resolvedResults: AxiosResponse[] = await Promise.all(results);
@@ -46,14 +42,20 @@ export const fetchThreePokemonProfiles = createAsyncThunk(
 
 export const pokemonShowroomStackSlice = createSlice({
 	name: 'pokemonShowroomStack',
-	initialState,
+	initialState: {
+		currentPokemonIndex: 3,
+		pokemonStack: initialShowroomPokemons,
+		isLoading: false
+	},
 	reducers: {
 		updatePokemonIndex(state, action: PayloadAction<number>) {
 			state.currentPokemonIndex = action.payload;
-			return state;
 		}
 	},
 	extraReducers: builder => {
+		builder.addCase(fetchThreePokemonProfiles.pending, state => {
+			state.isLoading = true;
+		});
 		builder.addCase(fetchThreePokemonProfiles.fulfilled, (state, action) => {
 			const extendedPokemonFullProfile = action.payload;
 
@@ -69,9 +71,11 @@ export const pokemonShowroomStackSlice = createSlice({
 					return pokemonFullProfile;
 				});
 
-			(state.pokemonStack as unknown as PokemonFullProfile[]).push(
-				...pokemonFullProfile
-			);
+			state.pokemonStack.push(...pokemonFullProfile);
+			state.isLoading = false;
+		});
+		builder.addCase(fetchThreePokemonProfiles.rejected, state => {
+			state.isLoading = false;
 		});
 	}
 });
